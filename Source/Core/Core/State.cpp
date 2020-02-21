@@ -185,11 +185,6 @@ static std::string DoState(PointerWrap& p)
 
 void LoadFromBuffer(std::vector<u8>& buffer)
 {
-	if (NetPlay::IsNetPlayRunning())
-	{
-		OSD::AddMessage("Loading savestates is disabled in Netplay to prevent desyncs");
-		return;
-	}
 
 	bool wasUnpaused = Core::PauseAndLock(true);
 
@@ -525,11 +520,6 @@ void LoadAs(const std::string& filename)
 {
 	if (!Core::IsRunning())
 	{
-		return;
-	}
-	else if (NetPlay::IsNetPlayRunning())
-	{
-		OSD::AddMessage("Loading savestates is disabled in Netplay to prevent desyncs");
 		return;
 	}
 
